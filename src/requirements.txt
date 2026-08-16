@@ -1,4 +1,4 @@
-kft
-google-cloud-storage
 google-cloud-airplatform
 google-cloud-pipeline-components
+google-cloud-storage
+kft

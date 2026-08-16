@@ -48,9 +48,9 @@ jobs:
       - name: 'GCP Auth'
         uses: 'google-github-actions/auth@v0.4.0'
         with:
-          project_id:
-          workload_identity_provider:
-          service_account:
+          project_id: 'gcp-pipeline-demo-505709'
+          workload_identity_provider: 'projects/849549998884/locations/global/workloadIdentityPools/github-identity-pool/providers/github-provider'
+          service_account: 'gcp-pipeline-service-account@gcp-pipeline-demo-505709.iam.gserviceaccount.com'
 
       - name: 'Register'
         run: |
@@ -58,4 +58,4 @@ jobs:
           -H "Authorization: Bearer $(gcloud auth print-access-token)" \
           -F tags=latest \
           -F content=@pipeline_futbol.yaml \
-          ${{ vars.PIPELINE_REPOSITORY }}
+          https://us-central1-kfp.pkg.dev/gcp-pipeline-demo-505709/artifact-repository
