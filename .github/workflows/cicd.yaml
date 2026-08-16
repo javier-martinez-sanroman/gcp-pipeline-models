@@ -42,7 +42,7 @@ jobs:
 
       - name: 'Compile'
         run: |
-          pip install -r src/pipeline_futbol/requirements.txt
+          pip install -r src/requirements.txt
           python -B src/pipeline_futbol/pipeline.py
 
       - name: 'GCP Auth'
