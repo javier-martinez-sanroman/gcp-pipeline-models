@@ -36,23 +36,39 @@ def load_data(
     df = pd.concat(dfs, ignore_index=True)
     del dfs
 
-    df["neutral"].replace(
-        {
-            "FALSE":0,
-            "TRUE":1,
-        },
-        inplace=True,
-    )
+    # Añadir columna 'quiniela' según el resultado del partido
+    import numpy as np
+
+    # Asegurar que los goles son numéricos
+    df["home_score"] = pd.to_numeric(df["home_score"], errors="coerce")
+    df["away_score"] = pd.to_numeric(df["away_score"], errors="coerce")
+
+    conditions = [
+        df["home_score"] > df["away_score"],
+        df["home_score"] < df["away_score"],
+        df["home_score"] == df["away_score"],
+    ]
+    choices = ["1", "2", "X"]
+
+    df["quiniela"] = np.select(conditions, choices, default="X")
+
+    # df["neutral"].replace(
+    #     {
+    #         "FALSE":0,
+    #         "TRUE":1,
+    #     },
+    #     inplace=True,
+    # )
 
     x_train, x_test, y_train, y_test = train_test_split(
-        df.drop("neutral", axis=1),
-        df["neutral"],
+        df.drop("quiniela", axis=1),
+        df["quiniela"],
         test_size=0.2,
         random_state=42,
     )
 
-    x_train["neutral"] = y_train
-    x_test["neutral"] = y_test
+    x_train["quiniela"] = y_train
+    x_test["quiniela"] = y_test
 
     x_train.to_csv(f"{train_dataset.path}", index=False)
     x_test.to_csv(f"{test_dataset.path}", index=False)
