@@ -8,8 +8,8 @@ from kfp.dsl import Input, Model, Output, component
     packages_to_install=["google_cloud_aiplatform"],
 )
 def register_model(
-    project_id: str, 
-    location: str, 
+    project_id: str,
+    location: str,
     model: Input[Model],
 ):
     from google.cloud import aiplatform
@@ -21,5 +21,3 @@ def register_model(
         display_name="Futbol_Model_v1",
         project=project_id,
     )
-
-    

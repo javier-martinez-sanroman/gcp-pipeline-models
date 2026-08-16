@@ -77,5 +77,3 @@ def random_forest(
     metrics.log_metric("accuracy", (acc))
 
     joblib.dump(model, output_model.path)
-
-    

@@ -1,4 +1,4 @@
-from kfp.fsl import Dataset, Output, component
+from kfp.dsl import Dataset, Output, component
 
 # ##########################################
 # DATA SPLIT
@@ -13,10 +13,10 @@ from kfp.fsl import Dataset, Output, component
 )
 def load_data(
     project_id: str,
-    bq_dataset: str, 
+    bq_dataset: str,
     bq_table: str,
     train_dataset: Output[Dataset],
-    test_dataset: Output[Dataset],    
+    test_dataset: Output[Dataset],
 ):
     import pandas as pd
     from google.cloud import bigquery

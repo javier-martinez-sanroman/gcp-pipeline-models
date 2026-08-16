@@ -10,7 +10,7 @@ PIPELINE_ROOT = "gs://gcp-pipeline-demo/pipeline_root"
 def pipeline(
     project_id:str,
     location:str,
-    bq_dataset:str, 
+    bq_dataset:str,
     bq_table:str,
 ):
     from components.data import load_data
@@ -19,17 +19,17 @@ def pipeline(
     from components.register import register_model
 
     data_op = load_data(
-        project_id=project_id, 
-        bq_dataset=bq_dataset, 
-        bq_table=bq_table
+        project_id=project_id,
+        bq_dataset=bq_dataset,
+        bq_table=bq_table,
     ).set_display_name("Load data from BigQuery")
 
     dt_op = decision_tree(
-        train_dataset=data_op.outputs["train_dataset"]
+        train_dataset=data_op.outputs["train_dataset"],
     ).set_display_name("Decision Tree")
 
     rf_op = random_forest(
-        train_dataset=data_op.outputs["train_dataset"]
+        train_dataset=data_op.outputs["train_dataset"],
     ).set_display_name("Decision Tree")
 
     choose_best_model_op = choose_best_model(
@@ -46,6 +46,5 @@ def pipeline(
 
 if __name__ == "__main__":
     kfp.compiler.Compiler().compile(
-        pipeline_func = pipeline, package_path = f"pipeline_futbol.yaml"
+        pipeline_func = pipeline, package_path = f"pipeline_futbol.yaml",
     )
-    

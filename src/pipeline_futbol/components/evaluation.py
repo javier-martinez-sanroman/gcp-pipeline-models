@@ -20,7 +20,7 @@ def choose_best_model(
     import joblib
     import pandas as pd
     from sklearn.metrics import accuracy_score
-    
+
     test_data = pd.read_csv(test_dataset.path)
 
     dt = joblib.load(decision_tree_model.path)
