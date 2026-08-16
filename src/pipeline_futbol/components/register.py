@@ -12,7 +12,7 @@ def register_model(
     location: str,
     model: Input[Model],
 ):
-    from google.cloud import aiplatform
+    from google.cloud import aiplatform # type: ignore[attr-defined]
 
     aiplatform.init(project=project_id, location=location)
 
