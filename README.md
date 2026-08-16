@@ -27,9 +27,9 @@ Creamos una federacion para accesos externos y agregamos un proveedor para githu
 
     **Attribute mapping**
 
-    - google.subject == assertion.sub      
-    - attribute.actor == assertion.actor  
-    - attribute.aud   == assertion.aud  
+    - google.subject == assertion.sub
+    - attribute.actor == assertion.actor
+    - attribute.aud   == assertion.aud
     - attribure.repository == assertion.repository
 
     **Attribute conditions**
