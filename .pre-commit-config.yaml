@@ -25,8 +25,11 @@ repos:
     rev: v1.10.0
     hooks:
     -   id: mypy
+        entry: mypy
+        language: system
+        types: [python]
         args: [
             --explicit-package-bases, 
             --namespace-packages, 
             --ignore-missing-imports 
-            ]
+        ]
