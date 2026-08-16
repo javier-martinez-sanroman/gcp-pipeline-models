@@ -29,7 +29,7 @@ repos:
         language: system
         types: [python]
         args: [
-            --explicit-package-bases, 
-            --namespace-packages, 
-            --ignore-missing-imports 
+            --explicit-package-bases,
+            --namespace-packages,
+            --ignore-missing-imports
         ]
