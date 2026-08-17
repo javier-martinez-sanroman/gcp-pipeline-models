@@ -59,9 +59,10 @@ mkdir -p gcp-pipeline-models && cd gcp-pipeline-models
 ```
 
 ```bash
-python3.11 -m venv venv-gcp-pipeline-models
+python3 -m venv venv-gcp-pipeline-models
 source venv-gcp-pipeline-models/bin/activate
 pip install pre-commit
+pip install mypy
 pip install -r requirements.txt
 ```
 
