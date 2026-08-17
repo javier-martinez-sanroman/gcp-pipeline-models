@@ -1,4 +1,4 @@
 google-cloud-aiplatform
 google-cloud-pipeline-components
 google-cloud-storage
-kfp
+kfp==2.17.0

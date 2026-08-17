@@ -59,7 +59,7 @@ mkdir -p gcp-pipeline-models && cd gcp-pipeline-models
 ```
 
 ```bash
-python3 -m venv venv-gcp-pipeline-models
+python3.11 -m venv venv-gcp-pipeline-models
 source venv-gcp-pipeline-models/bin/activate
 pip install pre-commit
 pip install -r requirements.txt
@@ -68,6 +68,16 @@ pip install -r requirements.txt
 ```bash
 pre-commit run --all-files
 ```
+
+### Github Actions
+
+#### [Service Account](https://console.cloud.google.com/iam-admin/serviceaccounts)
+El workflow definido en el proyecto inicia una acción en GitHub que activará el proceso de CI/CD  
+- CI: Realizamos la instalación y ejecución de PRE-COMMIT que es un framework que permite gestionar y ejecutar de forma automática scripts de verificación de código (git hooks) justo antes de que se guarde un cambio (commit) en un repositorio de Git. Ayuda a mantener la calidad del código limpia y uniforme.
+- CD: Realizamos la instalación de los requerimientos de librerias y ejecutamos el PIPELINE mediante un DAG (Directed Acyclic Graph o Grafo Acíclico Dirigido) que define y encapsula el flujo de trabajo.
+
+![Github Actions](doc/GH-1.png)
+
 
 ### Google Cloud Platform
 <!-- ## [Consola Google Cloud Platform](https://console.cloud.google.com/) -->
