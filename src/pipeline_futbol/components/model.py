@@ -8,9 +8,11 @@ from kfp.dsl import Dataset, Input, Metrics, Model, Output, component
     # base_image='python:3.11',
     base_image="us-docker.pkg.dev/deeplearning-platform-release/gcr.io/tf2-cpu.2-14.py310:latest",
     packages_to_install=[
-        "pandas==1.3.5",
-        "joblib==1.1.0",
+        "pandas==1.4.0",
+        "joblib==1.2.0",
     ],
+        # "pandas==1.3.5",
+        # "joblib==1.1.0",
 )
 def decision_tree(
     train_dataset: Input[Dataset],
@@ -49,9 +51,11 @@ def decision_tree(
     # base_image='python:3.11',
     base_image="us-docker.pkg.dev/deeplearning-platform-release/gcr.io/tf2-cpu.2-14.py310:latest",
     packages_to_install=[
-        "pandas==1.3.5",
-        "joblib==1.1.0",
+        "pandas==1.4.0",
+        "joblib==1.2.0",
     ],
+        # "pandas==1.3.5",
+        # "joblib==1.1.0",
 )
 def random_forest(
     train_dataset: Input[Dataset],

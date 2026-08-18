@@ -38,32 +38,6 @@ def load_data(
     df = pd.concat(dfs, ignore_index=True)
     del dfs
 
-    # # Añadir columna 'quiniela' según el resultado del partido
-    # import numpy as np
-
-    # # Asegurar que los goles son numéricos
-    # df["home_score"] = pd.to_numeric(df["home_score"], errors="coerce")
-    # df["away_score"] = pd.to_numeric(df["away_score"], errors="coerce")
-
-    # conditions = [
-    #     df["home_score"] > df["away_score"],
-    #     df["home_score"] < df["away_score"],
-    #     df["home_score"] == df["away_score"],
-    # ]
-    # choices = ["1", "2", "X"]
-
-    # df["quiniela"] = np.select(conditions, choices, default="X")
-
-    # df["neutral"].replace(
-    #     {
-    #         "FALSE":0,
-    #         "TRUE":1,
-    #     },
-    #     inplace=True,
-    # )
-
-    # print(df)
-
     x_train, x_test, y_train, y_test = train_test_split(
         df.drop("quiniela", axis=1),
         df["quiniela"],
