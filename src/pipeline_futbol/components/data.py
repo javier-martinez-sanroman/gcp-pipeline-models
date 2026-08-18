@@ -39,6 +39,13 @@ def load_data(
     df = pd.concat(dfs, ignore_index=True)
     del dfs
 
+    # La columna 'date' viene en formato yyyy-mm-dd como string; para evitar el
+    # error de sklearn al intentar convertirla a float, la convertimos a un valor
+    # numérico representativo (ordinal del día).
+    if "date" in df.columns:
+        df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%d", errors="coerce")
+        df["date"] = df["date"].map(pd.Timestamp.toordinal)
+
     x_train, x_test, y_train, y_test = train_test_split(
         df.drop("quiniela", axis=1),
         df["quiniela"],
