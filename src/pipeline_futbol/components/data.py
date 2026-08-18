@@ -36,20 +36,8 @@ def load_data(
     df = pd.concat(dfs, ignore_index=True)
     del dfs
 
-    # date
-    # home_team
-    # away_team
-    # home_score
-    # away_score
-    # tournament
-    # city
-    # country
-    # neutral
-    # quiniela
-
     from sklearn.preprocessing import LabelEncoder
     le = LabelEncoder()
-    # if "date" in df.columns:
     df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%d", errors="coerce")
     df["date"] = df["date"].map(pd.Timestamp.toordinal)
 
@@ -59,10 +47,9 @@ def load_data(
 
     df = df.drop(["home_team","away_team","home_score","away_score","tournament","city","country","quiniela"], axis=1)
 
-
     x_train, x_test, y_train, y_test = train_test_split(
-        df.drop("quiniela", axis=1),
-        df["quiniela"],
+        df.drop("quiniela_num", axis=1),
+        df["quiniela_num"],
         test_size=0.2,
         random_state=42,
     )

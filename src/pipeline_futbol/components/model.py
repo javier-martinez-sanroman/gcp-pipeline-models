@@ -35,8 +35,8 @@ def decision_tree(
     train = train.drop(["home_team","away_team","home_score","away_score","tournament","city","country","quiniela"], axis=1)
 
     x_train, x_test, y_train, y_test = train_test_split(
-        train.drop("quiniela", axis=1),
-        train["quiniela"],
+        train.drop("quiniela_num", axis=1),
+        train["quiniela_num"],
         test_size=0.2,
         random_state=42,
     )
@@ -85,8 +85,8 @@ def random_forest(
     train = train.drop(["home_team","away_team","home_score","away_score","tournament","city","country","quiniela"], axis=1)
 
     x_train, x_test, y_train, y_test = train_test_split(
-        train.drop("quiniela", axis=1),
-        train["quiniela"],
+        train.drop("quiniela_num", axis=1),
+        train["quiniela_num"],
         test_size=0.2,
         random_state=42,
     )
