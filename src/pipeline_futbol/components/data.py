@@ -54,8 +54,8 @@ def load_data(
         random_state=42,
     )
 
-    x_train["quiniela"] = y_train
-    x_test["quiniela"] = y_test
+    x_train["quiniela_num"] = y_train
+    x_test["quiniela_num"] = y_test
 
     x_train.to_csv(f"{train_dataset.path}", index=False)
     x_test.to_csv(f"{test_dataset.path}", index=False)
