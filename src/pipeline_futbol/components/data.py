@@ -45,7 +45,7 @@ def load_data(
     df['away_team_num'] = le.fit_transform(df['away_team'])
     df['neutral_num'] = le.fit_transform(df['neutral'])
 
-    df = df.drop(["home_team","away_team","home_score","away_score","tournament","city","country","quiniela"], axis=1)
+    df = df.drop(["home_team","away_team","home_score","away_score","tournament","city","country","neutral","quiniela"], axis=1)
 
     x_train, x_test, y_train, y_test = train_test_split(
         df.drop("quiniela_num", axis=1),
