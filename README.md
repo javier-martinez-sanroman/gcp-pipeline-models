@@ -79,6 +79,9 @@ El workflow definido en el proyecto inicia una acción en GitHub que activará e
 
 ![Github Actions](doc/GH-1.png)
 
+![Github Actions](doc/GH-2.png)
+
+![Github Actions](doc/GH-3.png)
 
 ### Google Cloud Platform
 <!-- ## [Consola Google Cloud Platform](https://console.cloud.google.com/) -->
