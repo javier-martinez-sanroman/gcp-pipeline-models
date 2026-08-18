@@ -9,9 +9,10 @@ from kfp.dsl import Dataset, Output, component
     # base_image='python:3.11',
     base_image="us-docker.pkg.dev/deeplearning-platform-release/gcr.io/tf2-cpu.2-14.py310:latest",
     packages_to_install=[
-        "pandas",
+        "pandas>=1.5.0,<2.1.4",
         "google-cloud-bigquery",
     ],
+        # "pandas",
 )
 def load_data(
     project_id: str,
