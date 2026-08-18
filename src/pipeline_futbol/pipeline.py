@@ -3,7 +3,7 @@ import kfp
 
 sys.path.append("src")
 
-PIPELINE_NAME = "Futbol-Pipeline-v1"
+PIPELINE_NAME = "futbol-pipeline-v1"
 PIPELINE_ROOT = "gs://gcp-pipeline-futbol/pipeline_root"
 
 @kfp.dsl.pipeline(name=PIPELINE_NAME, pipeline_root=PIPELINE_ROOT)
