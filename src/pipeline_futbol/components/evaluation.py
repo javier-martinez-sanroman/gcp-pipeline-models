@@ -4,7 +4,8 @@ from kfp.dsl import Dataset, Input, Metrics, Model, Output, component
 # EVALUATION
 # ##########################################
 @component(
-    base_image="gcr.io/deeplearning-platform-release/tf2-cpu.2-6:latest",
+    # base_image="gcr.io/deeplearning-platform-release/tf2-cpu.2-6:latest",
+    base_image='python:3.11',
     packages_to_install=[
         "pandas==1.3.5",
         "joblib==1.1.0",
