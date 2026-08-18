@@ -30,7 +30,7 @@ def pipeline(
 
     rf_op = random_forest(
         train_dataset=data_op.outputs["train_dataset"],
-    ).set_display_name("Decision Tree")
+    ).set_display_name("Randon Forest")
 
     choose_best_model_op = choose_best_model(
         test_dataset=data_op.outputs["test_dataset"],

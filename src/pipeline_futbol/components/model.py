@@ -4,15 +4,11 @@ from kfp.dsl import Dataset, Input, Metrics, Model, Output, component
 # DECISION TREE MODEL
 # ##########################################
 @component(
-    # base_image="gcr.io/deeplearning-platform-release/tf2-cpu.2-6:latest",
-    # base_image='python:3.11',
     base_image="us-docker.pkg.dev/deeplearning-platform-release/gcr.io/tf2-cpu.2-14.py310:latest",
     packages_to_install=[
         "pandas>=1.5.0,<2.1.4",
         "joblib==1.2.0",
     ],
-        # "pandas==1.3.5",
-        # "joblib==1.1.0",
 )
 def decision_tree(
     train_dataset: Input[Dataset],
@@ -26,6 +22,13 @@ def decision_tree(
     from sklearn.tree import DecisionTreeClassifier
 
     train = pd.read_csv(train_dataset.path)
+
+    # La columna 'date' viene en formato yyyy-mm-dd como string; para evitar el
+    # error de sklearn al intentar convertirla a float, la convertimos a un valor
+    # numérico representativo (ordinal del día).
+    if "date" in train.columns:
+        train["date"] = pd.to_datetime(train["date"], format="%Y-%m-%d", errors="coerce")
+        train["date"] = train["date"].map(pd.Timestamp.toordinal)
 
     x_train, x_test, y_train, y_test = train_test_split(
         train.drop("quiniela", axis=1),
@@ -47,15 +50,11 @@ def decision_tree(
 # RANDOM FOREST MODEL
 # ##########################################
 @component(
-    # base_image="gcr.io/deeplearning-platform-release/tf2-cpu.2-6:latest",
-    # base_image='python:3.11',
     base_image="us-docker.pkg.dev/deeplearning-platform-release/gcr.io/tf2-cpu.2-14.py310:latest",
     packages_to_install=[
         "pandas>=1.5.0,<2.1.4",
         "joblib==1.2.0",
     ],
-        # "pandas==1.3.5",
-        # "joblib==1.1.0",
 )
 def random_forest(
     train_dataset: Input[Dataset],
@@ -69,6 +68,13 @@ def random_forest(
     from sklearn.ensemble import RandomForestClassifier
 
     train = pd.read_csv(train_dataset.path)
+
+    # La columna 'date' viene en formato yyyy-mm-dd como string; para evitar el
+    # error de sklearn al intentar convertirla a float, la convertimos a un valor
+    # numérico representativo (ordinal del día).
+    if "date" in train.columns:
+        train["date"] = pd.to_datetime(train["date"], format="%Y-%m-%d", errors="coerce")
+        train["date"] = train["date"].map(pd.Timestamp.toordinal)
 
     x_train, x_test, y_train, y_test = train_test_split(
         train.drop("quiniela", axis=1),

@@ -5,14 +5,11 @@ from kfp.dsl import Dataset, Output, component
 # ##########################################
 
 @component(
-    # base_image="gcr.io/deeplearning-platform-release/tf2-cpu.2-6:latest",
-    # base_image='python:3.11',
     base_image="us-docker.pkg.dev/deeplearning-platform-release/gcr.io/tf2-cpu.2-14.py310:latest",
     packages_to_install=[
         "pandas>=1.5.0,<2.1.4",
         "google-cloud-bigquery",
     ],
-        # "pandas",
 )
 def load_data(
     project_id: str,

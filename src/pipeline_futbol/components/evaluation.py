@@ -4,15 +4,11 @@ from kfp.dsl import Dataset, Input, Metrics, Model, Output, component
 # EVALUATION
 # ##########################################
 @component(
-    # base_image="gcr.io/deeplearning-platform-release/tf2-cpu.2-6:latest",
-    # base_image='python:3.11',
     base_image="us-docker.pkg.dev/deeplearning-platform-release/gcr.io/tf2-cpu.2-14.py310:latest",
     packages_to_install=[
         "pandas>=1.5.0,<2.1.4",
         "joblib==1.2.0",
     ],
-        # "pandas==1.3.5",
-        # "joblib==1.1.0",
 )
 def choose_best_model(
     test_dataset: Input[Dataset],
@@ -30,11 +26,11 @@ def choose_best_model(
     dt = joblib.load(decision_tree_model.path)
     rf = joblib.load(random_forest_model.path)
 
-    dt_pred = dt.predict(test_data.drop("neutral", axis=1))
-    rf_pred = rf.predict(test_data.drop("neutral", axis=1))
+    dt_pred = dt.predict(test_data.drop("quiniela", axis=1))
+    rf_pred = rf.predict(test_data.drop("quiniela", axis=1))
 
-    df_accuracy = accuracy_score(test_data["neutral"], dt_pred)
-    rf_accuracy = accuracy_score(test_data["neutral"], rf_pred)
+    df_accuracy = accuracy_score(test_data["quiniela"], dt_pred)
+    rf_accuracy = accuracy_score(test_data["quiniela"], rf_pred)
 
     metrics.log_metric("Decision Tree (Accuracy)", (df_accuracy))
     metrics.log_metric("Random Forest (Accuracy)", (rf_accuracy))
