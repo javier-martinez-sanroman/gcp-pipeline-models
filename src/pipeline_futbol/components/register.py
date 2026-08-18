@@ -18,6 +18,6 @@ def register_model(
 
     aiplatform.Model.upload_scikit_learn_model_file(
         model_file_path=model.path,
-        display_name="Futbol_Model_v1",
+        display_name="Model_Futbol_v1",
         project=project_id,
     )
