@@ -36,12 +36,29 @@ def load_data(
     df = pd.concat(dfs, ignore_index=True)
     del dfs
 
-    # La columna 'date' viene en formato yyyy-mm-dd como string; para evitar el
-    # error de sklearn al intentar convertirla a float, la convertimos a un valor
-    # numérico representativo (ordinal del día).
-    if "date" in df.columns:
-        df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%d", errors="coerce")
-        df["date"] = df["date"].map(pd.Timestamp.toordinal)
+    # date
+    # home_team
+    # away_team
+    # home_score
+    # away_score
+    # tournament
+    # city
+    # country
+    # neutral
+    # quiniela
+
+    from sklearn.preprocessing import LabelEncoder
+    le = LabelEncoder()
+    # if "date" in df.columns:
+    df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%d", errors="coerce")
+    df["date"] = df["date"].map(pd.Timestamp.toordinal)
+
+    df['home_team_num'] = le.fit_transform(df['home_team'])
+    df['away_team_num'] = le.fit_transform(df['away_team'])
+    df['neutral_num'] = le.fit_transform(df['neutral'])
+
+    df.drop(["home_team","away_team","home_score","away_score","tournament","city","country"], axis=1)
+
 
     x_train, x_test, y_train, y_test = train_test_split(
         df.drop("quiniela", axis=1),
