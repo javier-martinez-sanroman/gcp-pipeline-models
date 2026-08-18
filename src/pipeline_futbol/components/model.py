@@ -32,7 +32,7 @@ def decision_tree(
     train['away_team_num'] = le.fit_transform(train['away_team'])
     train['neutral_num'] = le.fit_transform(train['neutral'])
 
-    train.drop(["home_team","away_team","home_score","away_score","tournament","city","country"], axis=1)
+    train = train.drop(["home_team","away_team","home_score","away_score","tournament","city","country","quiniela"], axis=1)
 
     x_train, x_test, y_train, y_test = train_test_split(
         train.drop("quiniela", axis=1),
@@ -82,7 +82,7 @@ def random_forest(
     train['away_team_num'] = le.fit_transform(train['away_team'])
     train['neutral_num'] = le.fit_transform(train['neutral'])
 
-    train.drop(["home_team","away_team","home_score","away_score","tournament","city","country"], axis=1)
+    train = train.drop(["home_team","away_team","home_score","away_score","tournament","city","country","quiniela"], axis=1)
 
     x_train, x_test, y_train, y_test = train_test_split(
         train.drop("quiniela", axis=1),
