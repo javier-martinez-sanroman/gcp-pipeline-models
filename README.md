@@ -145,3 +145,12 @@ Ejecutamos el pipeline
 
 DAG del pipeline  
 ![Artifact Registry](doc/AR-5.png)
+
+Pipeline correctamente ejecutado  
+![Artifact Registry](doc/AR-6.png)
+
+Trazabilidad de los datos  
+![Artifact Registry](doc/AR-7.png)
+
+## Modelo
+![Artifact Registry](doc/Model-1.png)
